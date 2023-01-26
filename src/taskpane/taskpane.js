@@ -12,6 +12,7 @@ Office.onReady((info) => {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
+    document.getElementById("comment").onclick = comment;
   }
 });
 
@@ -29,29 +30,7 @@ export async function run() {
 
     await context.sync();
   });
-  // export async function callGPT3() {
-  //   // send to gpt 3 the paragraph
-
-  //   //get the result and append to the comment section
-  // }
 }
-
-// export async function comment(text) {
-//   return Word.run(async (context) => {
-//     /**
-//      * Insert your Word code here
-//      */
-
-//     // insert a paragraph at the end of the document.
-//     text = context.document.body.Comments.Add(this.body.Paragraphs[1].Range, "Hello World");
-
-//     await context.sync(text);
-//   });
-// }
-
-//object text = "Add a comment to the first paragraph.";
-//this.Application.ActiveDocument.Comments.Add(
-// this.Application.ActiveDocument.Paragraphs[1].Range, ref text)
 
 export async function comment() {
   // Set a comment on the selected content.
@@ -65,3 +44,29 @@ export async function comment() {
     await context.sync();
   });
 }
+
+// export async function addComment() {
+//   // Get the current selection from the document
+//   Office.context.document.getSelection(function (result) {
+//     if (result.status === Office.AsyncResultStatus.Succeeded) {
+//       // Get the text of the selection
+//       var text = result.value;
+//       // Get the user's input for the comment
+//       var comment = "Enter your comment:";
+//       // Add the comment to the selected text
+//       Office.context.document.setSelectedDataAsync(
+//         text + "\n\nComment: " + comment,
+//         { coercionType: "text" },
+//         function (asyncResult) {
+//           if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+//             // console.log("Comment added successfully.");
+//           } else {
+//             // console.log("Error adding comment: " + asyncResult.error.message);
+//           }
+//         }
+//       );
+//     } else {
+//       // console.log("Error getting selection: " + result.error.message);
+//     }
+//   });
+// }
