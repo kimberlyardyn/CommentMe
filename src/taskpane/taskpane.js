@@ -26,7 +26,7 @@ Office.onReady((info) => {
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "",
 });
 const openai = new OpenAIApi(configuration);
 
