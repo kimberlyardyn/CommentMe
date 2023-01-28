@@ -13,6 +13,7 @@ Office.onReady((info) => {
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
     document.getElementById("comment").onclick = comment;
+    document.getElementById("selectcomment").onclick = selectcomment;
   }
 });
 
@@ -45,28 +46,22 @@ export async function comment() {
   });
 }
 
-// export async function addComment() {
-//   // Get the current selection from the document
-//   Office.context.document.getSelection(function (result) {
-//     if (result.status === Office.AsyncResultStatus.Succeeded) {
-//       // Get the text of the selection
-//       var text = result.value;
-//       // Get the user's input for the comment
-//       var comment = "Enter your comment:";
-//       // Add the comment to the selected text
-//       Office.context.document.setSelectedDataAsync(
-//         text + "\n\nComment: " + comment,
-//         { coercionType: "text" },
-//         function (asyncResult) {
-//           if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-//             // console.log("Comment added successfully.");
-//           } else {
-//             // console.log("Error adding comment: " + asyncResult.error.message);
-//           }
-//         }
-//       );
-//     } else {
-//       // console.log("Error getting selection: " + result.error.message);
-//     }
-//   });
-// }
+export async function selectcomment() {
+  return Word.run(async (context) => {
+    // Get the current selection from the document
+    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
+      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+        write("Action failed. Error: " + asyncResult.error.message);
+      } else {
+        write(asyncResult.value);
+      }
+    });
+
+    // Function that writes to a div with id='message' on the page.
+    async function write(message) {
+      const comment = context.document.getSelection("Hello World").insertComment(message);
+      comment.load();
+      await context.sync();
+    }
+  });
+}
