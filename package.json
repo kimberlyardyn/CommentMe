@@ -26,6 +26,7 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
+    "@saplingai/sapling-js": "^1.0.7",
     "axios": "^1.2.5",
     "core-js": "^3.9.1",
     "node-fetch": "^3.3.0",

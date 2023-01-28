@@ -1817,6 +1817,14 @@
   "resolved" "https://registry.npmjs.org/@opentelemetry/api/-/api-1.0.0-rc.0.tgz"
   "version" "1.0.0-rc.0"
 
+"@saplingai/sapling-js@^1.0.7":
+  "integrity" "sha512-9wKU2XNO17PBlaMqlXJ3J3zd1gR8JMLYpupn6gIYHsnHc7sNSBhpDX6bBM3WnSBZvxtFyPYYiouXTz5L/n04cg=="
+  "resolved" "https://registry.npmjs.org/@saplingai/sapling-js/-/sapling-js-1.0.7.tgz"
+  "version" "1.0.7"
+  dependencies:
+    "axios" "^1.1.2"
+    "uuid" "^9.0.0"
+
 "@sindresorhus/is@^4.0.0":
   "integrity" "sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw=="
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-4.6.0.tgz"
@@ -2723,7 +2731,7 @@
   dependencies:
     "follow-redirects" "^1.14.8"
 
-"axios@^1.2.5":
+"axios@^1.1.2", "axios@^1.2.5":
   "integrity" "sha512-9pU/8mmjSSOb4CXVsvGIevN+MlO/t9OWtKadTaLuN85Gge3HGorUckgp8A/2FH4V4hJ7JuQ3LIeI7KAV9ITZrQ=="
   "resolved" "https://registry.npmjs.org/axios/-/axios-1.2.5.tgz"
   "version" "1.2.5"
@@ -8303,6 +8311,11 @@
   "integrity" "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   "version" "8.3.2"
+
+"uuid@^9.0.0":
+  "integrity" "sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
+  "version" "9.0.0"
 
 "v8-compile-cache@^2.0.3":
   "integrity" "sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA=="
