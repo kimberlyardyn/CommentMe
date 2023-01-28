@@ -18,8 +18,8 @@ Office.onReady((info) => {
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
     document.getElementById("comment").onclick = comment;
-    document.getElementById("selectcomment").onclick = selectcomment;
-    document.getElementById("aicomment").onclick = aicomment;
+    document.getElementById("selectcomment").onclick = selectaicomment;
+    // document.getElementById("aicomment").onclick = aicomment;
   }
 });
 
@@ -30,11 +30,11 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function generateText() {
+async function generateText(message) {
   const completion = await openai.createCompletion({
     model: "text-davinci-002",
     //prompt: "why is kimberly so pretty",
-    prompt: "why is kimberly so pretty",
+    prompt: message,
     temperature: 0.6,
   });
   return completion.data.choices[0].text;
@@ -70,7 +70,7 @@ export async function comment() {
   });
 }
 
-export async function selectcomment() {
+export async function selectaicomment() {
   return Word.run(async (context) => {
     // Get the current selection from the document
     Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
@@ -83,21 +83,22 @@ export async function selectcomment() {
 
     // Function that writes to a div with id='message' on the page.
     async function write(message) {
-      const comment = context.document.getSelection("Hello World").insertComment(message);
+      const aitext = await generateText(message);
+      const comment = context.document.getSelection("Hello World").insertComment(aitext);
       comment.load();
       await context.sync();
     }
   });
 }
 
-export async function aicomment() {
-  // Set a comment on the selected content.
-  return Word.run(async (context) => {
-    const text = await generateText();
-    const comment = context.document.getSelection("Hello World").insertComment(text);
+// export async function aicomment() {
+//   // Set a comment on the selected content.
+//   return Word.run(async (context) => {
+//     const text = await generateText();
+//     const comment = context.document.getSelection("Hello World").insertComment(text);
 
-    // Load object for display in Script Lab console.
-    comment.load();
-    await context.sync();
-  });
-}
+//     // Load object for display in Script Lab console.
+//     comment.load();
+//     await context.sync();
+//   });
+// }
