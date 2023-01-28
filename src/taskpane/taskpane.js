@@ -7,6 +7,11 @@
 
 // ref: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/50-document/manage-comments.yaml
 
+// import generateText from "./openai.js";
+// import axios from "axios";
+// const API_KEY = "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";
+// const API_URL = "https://api.openai.com/v1/engines/davinci-codex/completions";
+
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
     document.getElementById("sideload-msg").style.display = "none";
@@ -14,8 +19,27 @@ Office.onReady((info) => {
     document.getElementById("run").onclick = run;
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectcomment;
+    document.getElementById("aicomment").onclick = aicomment;
   }
 });
+
+import { Configuration, OpenAIApi } from "openai";
+
+const configuration = new Configuration({
+  apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
+
+async function generateText() {
+  const completion = await openai.createCompletion({
+    model: "text-davinci-002",
+    //prompt: "why is kimberly so pretty",
+    prompt: "why is kimberly so pretty",
+    temperature: 0.6,
+  });
+  return completion.data.choices[0].text;
+  // return "hello";
+}
 
 export async function run() {
   return Word.run(async (context) => {
@@ -63,5 +87,17 @@ export async function selectcomment() {
       comment.load();
       await context.sync();
     }
+  });
+}
+
+export async function aicomment() {
+  // Set a comment on the selected content.
+  return Word.run(async (context) => {
+    const text = await generateText();
+    const comment = context.document.getSelection("Hello World").insertComment(text);
+
+    // Load object for display in Script Lab console.
+    comment.load();
+    await context.sync();
   });
 }
