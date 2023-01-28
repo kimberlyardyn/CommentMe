@@ -14,7 +14,7 @@ Office.onReady((info) => {
     document.getElementById("run").onclick = run;
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectaicomment;
-    document.getElementById("grammar").onclick = improvegrammar;
+    document.getElementById("grammar").onclick = correctgrammar;
   }
 });
 
@@ -37,7 +37,8 @@ async function generateText(message) {
   const completion = await openai.createCompletion({
     model: "text-davinci-002",
     prompt: message,
-    temperature: 0.6,
+    temperature: 0.7,
+    max_tokens: 70,
   });
   return completion.data.choices[0].text;
 }
@@ -95,7 +96,7 @@ export async function selectaicomment() {
 //Find grammar errors in text, and then leave comments explaining solutions and why they are errors
 //>> 2 Button Options: to find errors in whole document, or selected section
 //>> Another 2 Button Options: Leave comments like X-error should be Y-correction, this is because _____;; highlight text in yellow
-export async function improvegrammar() {
+export async function correctgrammar() {
   return Word.run(async (context) => {
     // Get the current selection from the document
     Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
@@ -108,7 +109,7 @@ export async function improvegrammar() {
 
     // Function that writes to a div with id='message' on the page.
     async function write2(error_message) {
-      const message = "Explain how the following text could be improved:" + error_message;
+      const message = "Explain why this sentence is grammatically incorrect:" + error_message;
       const aitext = await generateText(message);
       const comment = context.document.getSelection("Hello World").insertComment(aitext);
       comment.load();
