@@ -14,26 +14,24 @@ Office.onReady((info) => {
     document.getElementById("run").onclick = run;
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectaicomment;
-    // document.getElementById("aicomment").onclick = aicomment;
   }
 });
 
 import { Configuration, OpenAIApi } from "openai";
+import { OPENAI_API_KEY } from "../../config";
 
 const configuration = new Configuration({
-  apiKey: "",
+  apiKey: OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
 async function generateText(message) {
   const completion = await openai.createCompletion({
     model: "text-davinci-002",
-    //prompt: "why is kimberly so pretty",
     prompt: message,
     temperature: 0.6,
   });
   return completion.data.choices[0].text;
-  // return "hello";
 }
 
 export async function run() {
@@ -55,7 +53,6 @@ export async function run() {
 export async function comment() {
   // Set a comment on the selected content.
   return Word.run(async (context) => {
-    // const text = $("#comment-text").val().toString();
     const text = "abcd";
     const comment = context.document.getSelection("Hello World").insertComment(text);
 
@@ -85,15 +82,3 @@ export async function selectaicomment() {
     }
   });
 }
-
-// export async function aicomment() {
-//   // Set a comment on the selected content.
-//   return Word.run(async (context) => {
-//     const text = await generateText();
-//     const comment = context.document.getSelection("Hello World").insertComment(text);
-
-//     // Load object for display in Script Lab console.
-//     comment.load();
-//     await context.sync();
-//   });
-// }
