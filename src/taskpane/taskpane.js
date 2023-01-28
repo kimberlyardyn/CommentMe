@@ -7,11 +7,6 @@
 
 // ref: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/50-document/manage-comments.yaml
 
-// import generateText from "./openai.js";
-// import axios from "axios";
-// const API_KEY = "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";
-// const API_URL = "https://api.openai.com/v1/engines/davinci-codex/completions";
-
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
     document.getElementById("sideload-msg").style.display = "none";
