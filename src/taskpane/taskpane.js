@@ -15,24 +15,9 @@ Office.onReady((info) => {
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectaicomment;
     document.getElementById("grammar").onclick = correctgrammar;
-    document.getElementById("grammar").onclick = promptcomment;
-    document.getElementById("open-menu-button").onclick = customSelectMenu;
-    document.getElementById("custom-select-menu").onclick = promptcomment;
+    document.getElementById("customprompt").onclick = comment;
   }
 });
-
-///may need delete
-const openMenuButton = document.getElementById("open-menu-button");
-const customSelectMenu = document.getElementById("custom-select-menu");
-
-openMenuButton.addEventListener("click", function() {
-  if (customSelectMenu.style.display === "none") {
-    customSelectMenu.style.display = "block";
-  } else {
-    customSelectMenu.style.display = "none";
-  }
-});
-//
 
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY, SAPLING_API_KEY } from "../../config";
@@ -131,8 +116,6 @@ export async function promptcomment() {
   });
 }
 
-
-
 // COULD USE WORK
 //Find grammar errors in text, and then leave comments explaining solutions and why they are errors
 //>> 2 Button Options: to find errors in whole document, or selected section
@@ -159,5 +142,23 @@ export async function correctgrammar() {
       comment.load();
       await context.sync();
     }
+  });
+}
+
+//for the prompt creation
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+  const myDropdown = document.getElementById("my-dropdown");
+  myDropdown.addEventListener("change", function () {
+    const selectedValue = myDropdown.value;
+    return Word.run(async (context) => {
+      // const text = "abcd";
+      const comment = context.document.getSelection("Hello World").insertComment(selectedValue);
+      // Load object for display in Script Lab console.
+      comment.load();
+      await context.sync();
+    });
   });
 }
