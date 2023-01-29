@@ -15,8 +15,24 @@ Office.onReady((info) => {
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectaicomment;
     document.getElementById("grammar").onclick = correctgrammar;
+    document.getElementById("grammar").onclick = promptcomment;
+    document.getElementById("open-menu-button").onclick = customSelectMenu;
+    document.getElementById("custom-select-menu").onclick = promptcomment;
   }
 });
+
+///may need delete
+const openMenuButton = document.getElementById("open-menu-button");
+const customSelectMenu = document.getElementById("custom-select-menu");
+
+openMenuButton.addEventListener("click", function() {
+  if (customSelectMenu.style.display === "none") {
+    customSelectMenu.style.display = "block";
+  } else {
+    customSelectMenu.style.display = "none";
+  }
+});
+//
 
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY, SAPLING_API_KEY } from "../../config";
@@ -92,10 +108,36 @@ export async function selectaicomment() {
   });
 }
 
-// NEEDS WORK
+//NEEDS WORK
+// Button Options: Write/Paste own prompt into text box
+export async function promptcomment() {
+  return Word.run(async (context) => {
+    // Get the current selection from the document
+    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
+      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+        write("Action failed. Error: " + asyncResult.error.message);
+      } else {
+        write(asyncResult.value);
+      }
+    });
+    //Open a list of options to check, a couple suggested prompts as well as empty text box
+    // Function that writes to a div with id='message' on the page.
+    async function write(message) {
+      const aitext = await generateText(message);
+      const comment = context.document.getSelection("Hello World").insertComment(aitext);
+      comment.load();
+      await context.sync();
+    }
+  });
+}
+
+
+
+// COULD USE WORK
 //Find grammar errors in text, and then leave comments explaining solutions and why they are errors
 //>> 2 Button Options: to find errors in whole document, or selected section
-//>> Another 2 Button Options: Leave comments like X-error should be Y-correction, this is because _____;; highlight text in yellow
+//>> highlight errors in yellow -- or, users just use grammarly to pinpoint errors?
+//temperature: 0.7, max_tokens: 70 seems to work well
 export async function correctgrammar() {
   return Word.run(async (context) => {
     // Get the current selection from the document
@@ -109,7 +151,9 @@ export async function correctgrammar() {
 
     // Function that writes to a div with id='message' on the page.
     async function write2(error_message) {
-      const message = "Explain why this sentence is grammatically incorrect:" + error_message;
+      const message =
+        "Explain all the grammatical errors in this sentence and provide an example of the sentence grammatically corrected:" +
+        error_message;
       const aitext = await generateText(message);
       const comment = context.document.getSelection("Hello World").insertComment(aitext);
       comment.load();
