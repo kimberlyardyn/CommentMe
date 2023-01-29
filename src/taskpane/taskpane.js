@@ -15,7 +15,7 @@ Office.onReady((info) => {
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectaicomment;
     document.getElementById("grammar").onclick = correctgrammar;
-    document.getElementById("customprompt").onclick = comment;
+    document.getElementById("mySelect").onclick = givenprompt;
   }
 });
 
@@ -93,29 +93,6 @@ export async function selectaicomment() {
   });
 }
 
-//NEEDS WORK
-// Button Options: Write/Paste own prompt into text box
-export async function promptcomment() {
-  return Word.run(async (context) => {
-    // Get the current selection from the document
-    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
-      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
-        write("Action failed. Error: " + asyncResult.error.message);
-      } else {
-        write(asyncResult.value);
-      }
-    });
-    //Open a list of options to check, a couple suggested prompts as well as empty text box
-    // Function that writes to a div with id='message' on the page.
-    async function write(message) {
-      const aitext = await generateText(message);
-      const comment = context.document.getSelection("Hello World").insertComment(aitext);
-      comment.load();
-      await context.sync();
-    }
-  });
-}
-
 // COULD USE WORK
 //Find grammar errors in text, and then leave comments explaining solutions and why they are errors
 //>> 2 Button Options: to find errors in whole document, or selected section
@@ -148,17 +125,27 @@ export async function correctgrammar() {
 //for the prompt creation
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-  const myDropdown = document.getElementById("my-dropdown");
-  myDropdown.addEventListener("change", function () {
-    const selectedValue = myDropdown.value;
-    return Word.run(async (context) => {
-      // const text = "abcd";
-      const comment = context.document.getSelection("Hello World").insertComment(selectedValue);
-      // Load object for display in Script Lab console.
+
+//NEEDS WORK
+// Button Options: Write/Paste own prompt into text box
+export async function givenprompt() {
+  return Word.run(async (context) => {
+    // Get the current selection from the document
+    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
+      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+        write("Action failed. Error: " + asyncResult.error.message);
+      } else {
+        write(asyncResult.value);
+      }
+    });
+    //Open a list of options to check, a couple suggested prompts as well as empty text box
+    // Function that writes to a div with id='message' on the page.
+    async function write(message) {
+      const aitext = await generateText(message);
+      const comment = context.document.getSelection("Hello World").insertComment(aitext);
       comment.load();
       await context.sync();
-    });
+    }
   });
 }
+// NEED TO DO: Insert Text, Create Own Prompt
