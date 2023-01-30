@@ -15,7 +15,9 @@ Office.onReady((info) => {
     document.getElementById("comment").onclick = comment;
     document.getElementById("selectcomment").onclick = selectaicomment;
     document.getElementById("grammar").onclick = correctgrammar;
-    document.getElementById("mySelect").onclick = givenprompt;
+    document.getElementById("mySelect").onchange = givenprompt;
+    document.getElementById("sendCreatedPrompt").onsubmit = createprompt;
+    document.getElementById("myInput").onchange = createprompt;
   }
 });
 
@@ -129,23 +131,31 @@ toggle between hiding and showing the dropdown content */
 //NEEDS WORK
 // Button Options: Write/Paste own prompt into text box
 export async function givenprompt() {
+  // Set a comment on the selected content.
   return Word.run(async (context) => {
-    // Get the current selection from the document
-    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
-      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
-        write("Action failed. Error: " + asyncResult.error.message);
-      } else {
-        write(asyncResult.value);
-      }
-    });
-    //Open a list of options to check, a couple suggested prompts as well as empty text box
-    // Function that writes to a div with id='message' on the page.
-    async function write(message) {
-      const aitext = await generateText(message);
-      const comment = context.document.getSelection("Hello World").insertComment(aitext);
-      comment.load();
-      await context.sync();
-    }
+    const mySelect = document.getElementById("mySelect");
+    const selectedOptionValue = mySelect.value;
+    // const result = generateAIPrompt(selectedOptionValue)
+    const comment = context.document.getSelection("Hello World").insertComment(selectedOptionValue);
+
+    // Load object for display in Script Lab console.
+    comment.load();
+    await context.sync();
   });
 }
 // NEED TO DO: Insert Text, Create Own Prompt
+//export async function givenprompt() {}
+export async function createprompt() {
+  // Set a comment on the selected content.
+  return Word.run(async (context) => {
+    const input = document.getElementById("myInput");
+    const selectedOptionValue = input.value;
+    // const result = generateAIPrompt(selectedOptionValue)
+    const comment = context.document.getSelection("Hello World").insertComment(selectedOptionValue);
+
+    // Load object for display in Script Lab console.
+    comment.load();
+    await context.sync();
+  });
+}
+//need to link AI to givenprompt and create prompt;

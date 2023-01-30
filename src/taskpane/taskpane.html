@@ -54,9 +54,10 @@
           <option value="elaborate">This is too vague. Can you elaborate? For example:</option>
         </select>
       </div>
-      <button class="givenprompt">Generate Comment</button>
-      <button onclick="document.getElementById('myInput').value = ''">Create your own prompt</button>
-<input type="text" value="createdprompt" id="myInput">
+      <div>
+        <button id="sendCreatedPrompt">Generate Comment with Following Prompt:</button>
+        <input type="text" value="createprompt" id="myInput" />
+      </div>
     </main>
   </body>
 </html>
