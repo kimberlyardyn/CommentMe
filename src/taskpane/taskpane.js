@@ -131,31 +131,49 @@ toggle between hiding and showing the dropdown content */
 //NEEDS WORK
 // Button Options: Write/Paste own prompt into text box
 export async function givenprompt() {
-  // Set a comment on the selected content.
+  // Set a comment on the selected content, produces selected_text
   return Word.run(async (context) => {
-    const mySelect = document.getElementById("mySelect");
-    const selectedOptionValue = mySelect.value;
-    // const result = generateAIPrompt(selectedOptionValue)
-    const comment = context.document.getSelection("Hello World").insertComment(selectedOptionValue);
+    // Get the current selection from the document
+    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
+      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+        write4("Action failed. Error: " + asyncResult.error.message);
+      } else {
+        const selected_text = asyncResult.value;
+        write4(selected_text);
+      }
+    });
 
-    // Load object for display in Script Lab console.
-    comment.load();
-    await context.sync();
+    // Function that writes to a div with id='message' on the page.
+    async function write4(selected_text) {
+      const prompt = document.getElementById("mySelect").value;
+      const aitext = await generateText(prompt + selected_text);
+      const comment = context.document.getSelection(selected_text).insertComment(aitext);
+      comment.load();
+      await context.sync();
+    }
   });
 }
-// NEED TO DO: Insert Text, Create Own Prompt
-//export async function givenprompt() {}
+
 export async function createprompt() {
-  // Set a comment on the selected content.
+  // Set a comment on the selected content, produces selected_text
   return Word.run(async (context) => {
-    const input = document.getElementById("myInput");
-    const selectedOptionValue = input.value;
-    // const result = generateAIPrompt(selectedOptionValue)
-    const comment = context.document.getSelection("Hello World").insertComment(selectedOptionValue);
+    // Get the current selection from the document
+    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, function (asyncResult) {
+      if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+        write3("Action failed. Error: " + asyncResult.error.message);
+      } else {
+        const selected_text = asyncResult.value;
+        write3(selected_text);
+      }
+    });
 
-    // Load object for display in Script Lab console.
-    comment.load();
-    await context.sync();
+    // Function that writes to a div with id='message' on the page.
+    async function write3(selected_text) {
+      const prompt = document.getElementById("myInput").value;
+      const aitext = await generateText(prompt + selected_text);
+      const comment = context.document.getSelection(selected_text).insertComment(aitext);
+      comment.load();
+      await context.sync();
+    }
   });
 }
-//need to link AI to givenprompt and create prompt;
