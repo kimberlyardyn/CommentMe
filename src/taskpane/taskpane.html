@@ -31,9 +31,9 @@
       <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none">
-      <h2 class="ms-font-xl">Let's start giving feedback!</h2>
+      <h2 class="ms-font-xl"><b>Let's start giving feedback!</b></h2>
       <ul class="ms-List ms-welcome__features"></ul>
-      <p class="ms-font-l">Modify the source files, then click <b>Practice</b>.</p>
+      <p class="ms-font-l">Read the essays and turn on grammar check to spot errors, then start commenting.</p>
       <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
         <span class="ms-Button-label">Practice</span>
       </div>
@@ -47,16 +47,17 @@
         <span class="ms-Button-label">AI Comment</span>
       </div>
       <div>
-        <p>Choose Prompt for AI:</p>
+        <p class="custom-select ms-font-xl">Choose Prompt for AI Comment:</p>
         <select id="mySelect">
-          <option value="factcheck">Is this factual?</option>
-          <option value="clarify" selected>What do you mean by this?</option>
-          <option value="elaborate">This is too vague. Can you elaborate? For example:</option>
+          <option class="dropdown" value="factcheck">Is this factual?</option>
+          <option class="dropdown" value="clarify" selected>What do you mean by this?</option>
+          <option class="dropdown" value="elaborate">This is too vague. Can you elaborate? For example:</option>
         </select>
       </div>
       <div>
-        <button id="sendCreatedPrompt">Generate Comment with Following Prompt:</button>
-        <input type="text" value="createprompt" id="myInput" />
+        <p class="custom-select ms-font-xl">Create Prompt for AI Comment:</p>
+        <input type="text" class="textbox" value="createprompt" id="myInput" />
+        <button id="sendCreatedPrompt">Generate Comment using Above Prompt:</button>
       </div>
     </main>
   </body>
