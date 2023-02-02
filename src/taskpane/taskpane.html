@@ -28,35 +28,55 @@
         <h1 class="ms-font-su">Welcome</h1>
     </header> -->
     <section id="sideload-msg" class="ms-welcome__main">
-      <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
+      <h2 class="ms-font-xxl">Please sideload your add-in to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none">
-      <h2 class="ms-font-xl">Let's start giving feedback!</h2>
+      <h2 class="ms-font-xl"><b>Let's start giving feedback!</b></h2>
       <ul class="ms-List ms-welcome__features"></ul>
-      <p class="ms-font-l">Modify the source files, then click <b>Practice</b>.</p>
-      <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+      <!-- <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
         <span class="ms-Button-label">Practice</span>
-      </div>
+      </div> -->
       <div role="button" id="grammar" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-        <span class="ms-Button-label">Grammar Correction</span>
+        <span class="ms-Button-label"><b>Grammar Correction</b></span>
+        <p class="ms-font-m"><i>Provides explanations of grammar errors in the selected text.</i></p>
       </div>
-      <div role="button" id="comment" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+      <!-- <div role="button" id="comment" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
         <span class="ms-Button-label">Comment</span>
-      </div>
-      <div role="button" id="selectcomment" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+      </div> -->
+      <!-- <div role="button" id="selectcomment" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
         <span class="ms-Button-label">AI Comment</span>
-      </div>
+      </div> -->
       <div>
-        <p>Choose Prompt for AI:</p>
-        <select id="mySelect">
-          <option value="factcheck">Is this factual?</option>
-          <option value="clarify" selected>What do you mean by this?</option>
-          <option value="elaborate">This is too vague. Can you elaborate? For example:</option>
+        <p class="custom-select ms-font-xl"><b>Quick Comment</b></p>
+        <p class="ms-font-m"><i>Choose a standard comment response for the selected text.</i></p>
+        <select id="mySelect2" name="mySelect2">
+        <option class="dropdown" value="0" selected>Select an option.</option>
+          <option class="dropdown" value="rephrase">This is not clear. Can you clarify?</option>
+          <option class="dropdown" value="anecdote">Can you add an example to illustrate your point?</option>
+          <option class="dropdown" value="context">How so? Can you provide some further explanation?</option>
+          <option class="dropdown" value="list">Make sure to elabrorate on each point you make.</option>
+          <option class="dropdown" value="context">How so? Can you provide some further explanation?</option>
+          <option class="dropdown" value="relevance">This doesn't seem releveant, you can leave it off.</option>
+          <option class="dropdown" value="factcheck">Is this statement factual? You may want to doublecheck.</option>
         </select>
       </div>
       <div>
-        <button id="sendCreatedPrompt">Generate Comment with Following Prompt:</button>
-        <input type="text" value="createprompt" id="myInput" />
+        <p class="custom-select ms-font-xl"><b>AI-Generated Comment</b></p>
+        <p class="ms-font-m"><i>AI will create a comment response based on the selected prompt.</i></p>
+        <select id="mySelect" name="mySelect">
+          <option class="dropdown" value="0" selected>Select an option.</option>
+          <option class="dropdown" value="clarify">This can be improved for clarity. For example, you could write:</option>
+          <option class="dropdown" value="elaborate">This is too vague. Can you elaborate? For example:</option>
+          <option class="dropdown" value="active">Use active voice instead. For example, you could write:</option>
+          <option class="dropdown" value="critique">Here are 3 ways the content of your passage can be improved:</option>
+          <option class="dropdown" value="brainstorm">Here are 3 ideas you can brainstorm to further develop the passage:</option>
+        </select>
+      </div>
+      <div>
+        <p class="custom-select ms-font-xl"><b>Create Prompt for AI Comment</b></p>
+        <p class="ms-font-m"><i>AI will create a comment based on the prompt written below. Tip: Be specific! Examples could be: "Condense this passage to 50 words." "Rewrite this in a more positive tone."</i></p>
+        <input type="text" class="textbox" value="" id="myInput" />
+        <button id="sendCreatedPrompt">Generate Comment Using Your Prompt</button>
       </div>
     </main>
   </body>

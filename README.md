@@ -12,7 +12,7 @@ $$//>> Button Options: Write/Paste own prompt into text box
 5. Optional: Fact Check a selected text
 6. Optional: Give a grade based on an imported rubric?
 
-
+//improve prompts for AI, improve CSS
 
 GPT-3 - MS Word add-in
 
