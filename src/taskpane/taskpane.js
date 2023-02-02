@@ -11,9 +11,6 @@ Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
-    // document.getElementById("run").onclick = run;
-    // document.getElementById("comment").onclick = comment;
-    // document.getElementById("selectcomment").onclick = selectaicomment;
     document.getElementById("grammar").onclick = correctgrammar;
     document.getElementById("mySelect").onchange = givenprompt;
     document.getElementById("mySelect2").onchange = quickcomment;

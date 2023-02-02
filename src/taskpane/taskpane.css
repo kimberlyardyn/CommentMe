@@ -18,17 +18,6 @@
      padding: 0;
  }
  
- .ms-welcome__header {
-    padding: 20px;
-    padding-bottom: 0px;
-    padding-top: 100px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    align-items: center;
-    color: #674d3c;
- }
 
  /* Let's Start Giving Feedback*/
  .ms-welcome__main {
@@ -43,7 +32,7 @@
     -webkit-flex: 1 0 0;
     flex: 1 0 0;
     padding: 10px 20px;
-    color: #674d3c;
+    color: #584233;
     text-align: center;
  }
  
@@ -51,107 +40,36 @@
      width: 100%;
      text-align: center;
  }
+
  
- /*Read the essays and turn on grammar check to spot errors,*/
- .ms-welcome__features {
-     list-style-type: none;
-     margin-top: 0px;
- }
- 
- .ms-welcome__features.ms-List .ms-ListItem {
-     padding-bottom: 0px;
-     display: -webkit-flex;
-     display: flex;
- }
- 
- .ms-welcome__features.ms-List .ms-ListItem > .ms-Icon {
-     margin-right: 10px;
- }
- 
- .ms-welcome__action.ms-Button--hero {
-     margin-top: 10px;
-     margin-bottom: 10px;
- }
  
 .ms-Button.ms-Button--hero .ms-Button-label {
-  color: #588c7e;
+  color: #568c7e;
 }
 
-.ms-Button.ms-Button--hero:hover .ms-Button-label,
-.ms-Button.ms-Button--hero:focus .ms-Button-label{
-  color: #83339e;
-  cursor: pointer;
+.ms-welcome__action {
+    padding-top: 20px;
+    padding-bottom: 0px;
 }
-
-b {
-    font-weight: bold;
-}
-
 
 .custom-select {
     position: relative;
     color: #588c7e;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 10px;
   }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/
-  }
-  
-  .select-selected {
-    background-color: purple;
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
-    position: absolute;
-    content: "";
-    top: 10px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    top: 7px;
-  }
+
+.ms-Button.ms-Button--hero:hover .ms-Button-label,
+.ms-Button.ms-Button--hero:focus .ms-Button-label{
+  color: #914fa7;
+  cursor: pointer;
+}
+
   #mySelect {
     width: 250px;
   }
+  
   #mySelect2 {
     width: 250px;
-  }
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
-    color: #fff2df;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(46, 38, 38, 0.1) transparent;
-    cursor: pointer;
-    user-select: none;
-    font-size: 12px;
-  }
-  
-  /*style items (options):*/
-  .select-items {
-    position: relative;
-    background-color: rgb(121, 177, 234);
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    font-size: 12px;
-    -moz-white-space: pre-wrap;
-    -o-white-space: pre-wrap;
-    white-space: pre-wrap;
-    /* hide text that can't wrap with an ellipsis */
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   
   /*hide the items when the select box is closed:*/
@@ -159,9 +77,6 @@ b {
     display: none;
   }
   
-  .select-items div:hover, .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
 
   .textbox {
     height: 15px;
