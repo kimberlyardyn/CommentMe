@@ -20,7 +20,7 @@
  
  .ms-welcome__header {
     padding: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
     padding-top: 100px;
     display: -webkit-flex;
     display: flex;
@@ -120,7 +120,12 @@ b {
     border-color: transparent transparent #fff transparent;
     top: 7px;
   }
-  
+  #mySelect {
+    width: 250px;
+  }
+  #mySelect2 {
+    width: 250px;
+  }
   /*style the items (options), including the selected item:*/
   .select-items div,.select-selected {
     color: #fff2df;
@@ -129,18 +134,24 @@ b {
     border-color: transparent transparent rgba(46, 38, 38, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-    font-size: 15px;
+    font-size: 12px;
   }
   
   /*style items (options):*/
   .select-items {
-    position: absolute;
+    position: relative;
     background-color: rgb(121, 177, 234);
     top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
-    font-size: 15px;
+    font-size: 12px;
+    -moz-white-space: pre-wrap;
+    -o-white-space: pre-wrap;
+    white-space: pre-wrap;
+    /* hide text that can't wrap with an ellipsis */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   /*hide the items when the select box is closed:*/
@@ -156,13 +167,6 @@ b {
     height: 15px;
     width: 250px;
     margin-bottom: 5px;
-    font-size: 12px;
-    overflow: hidden;
-    }
-
-.dropdown {
-    height: 30px;
-    width: 250px;
-    margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 11px;
+    overflow: scroll;
     }
